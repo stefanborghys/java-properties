@@ -14,10 +14,12 @@ import java.util.Properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 /**
- * Properties helper. Can be used to store and load properties data.</br>
+ * Properties helper.</br>
+ * Can be used to store and load property data.</br>
  * </br>
  * source: <a href="http://www.mkyong.com/java/java-properties-file-examples/">http://www.mkyong.com/java/java-properties-file-examples/</a>
  * @author seriousbusiness
+ * @author Stefan Borghys
  *
  */
 public class PropertyHelper {
@@ -54,7 +56,11 @@ public class PropertyHelper {
 		}
 	}
 	
-	private static final Map<String,String> load(){
+	/**
+	 * Loads Properties into a map containing the property name as key and it's value.
+	 * @return an empty map when no properties are found.
+	 */
+	private synchronized static final Map<String,String> load(){
 		final Enumeration<?> propertyNames=properties.propertyNames();
 		Map<String,String> propertiesMap=new HashMap<String,String>();
 		while(propertyNames.hasMoreElements()){
